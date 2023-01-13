@@ -1,6 +1,6 @@
-﻿using TestRegex;
+﻿using TestRegex.Functions;
 
-string telefone = @"Lista telefônica:
+string phonesBr = @"Lista telefônica:
 -sduiasdfu rgvfiogri 2344231 44446-454 (11) 98756-1212
 -98765-4321 uidosfh duhduigohdfuioHE 
 -1125344552 11 9 8324-2011
@@ -11,7 +11,7 @@ string telefone = @"Lista telefônica:
 
 (25)452566744";
 
-string [] result = Replaces.GetPhonesBRInString(telefone);
+string [] result = Replaces.PickUpBrazilianPhonesOnAStringInput(phonesBr);
 
 
 foreach (var item in result)
