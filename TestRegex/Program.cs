@@ -11,10 +11,26 @@ string phonesBr = @"Lista telefônica:
 
 (25)452566744";
 
-string [] result = Replaces.PickUpBrazilianPhonesOnAStringInput(phonesBr);
+string emails = @"Os e-mails dos convidados são:
+
+- usdfuyasdiofy iisdfoi sidsaduio@dofis.dfd fulano@cod3r.com.br
+-xico@gmail.com
+- rmonteiro@brasilcash.com.br
+-prefeitura123@prefeitura.org.br
+-   mart4463@outlook.com
+";
+
+//string [] result = SimpleRegexMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
+string[] result2 = SimpleRegexMatchList.GetEmailsInStringInput(emails); 
 
 
-foreach (var item in result)
+
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item);
+//}
+
+foreach (var item in result2)
 {
     Console.WriteLine(item);
 }

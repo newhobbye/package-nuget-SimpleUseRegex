@@ -2,7 +2,7 @@
 
 namespace TestRegex.Functions
 {
-    public static class Replaces
+    public static class SimpleRegexMatchList
     {
         public static string[] PickUpBrazilianPhonesOnAStringInput(string input)
         {
@@ -29,6 +29,24 @@ namespace TestRegex.Functions
                 return result;
             }
 
+        }
+
+        public static string[] GetEmailsInStringInput(string input)
+        {
+            
+            string pattern = @"((\w+@)(\w+)\.(\w{3})?(\.\w{2})?)";
+
+            Regex regex = new(pattern, RegexOptions.IgnoreCase);
+            MatchCollection matches = regex.Matches(input);
+
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
         }
     }
 }
