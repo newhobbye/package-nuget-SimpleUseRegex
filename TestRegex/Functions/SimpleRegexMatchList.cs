@@ -48,5 +48,30 @@ namespace TestRegex.Functions
 
             return result;
         }
+
+        public static string[] GetCPFBrazilianIdentificationOnStringInput(string input)
+        {
+            string pattern = @"(\d{3}\.\d{3}.\d{3}-\d{2})";
+
+            Regex regex = new(pattern, RegexOptions.Multiline);
+            MatchCollection matches = regex.Matches(input);
+
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
+        }
+
+        //rgs
+
+        //ceps
+
+        //cnpjs
+
+
     }
 }

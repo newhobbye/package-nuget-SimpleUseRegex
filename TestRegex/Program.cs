@@ -20,15 +20,16 @@ string emails = @"Os e-mails dos convidados são:
 -   mart4463@outlook.com
 ";
 
+string CPFs = @"CPF dos aprovados:
+- asudiodu 600.567.890-12 asidosd
+- 765.998.345-23sdadiopo
+- xzcsffgcvxzfc159.753.789-12
+- 466.697.090-65 fuasdiosdfd";
+
 //string [] result = SimpleRegexMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
-string[] result2 = SimpleRegexMatchList.GetEmailsInStringInput(emails); 
+//string[] result2 = SimpleRegexMatchList.GetEmailsInStringInput(emails);
+string[] result2 = SimpleRegexMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
 
-
-
-//foreach (var item in result)
-//{
-//    Console.WriteLine(item);
-//}
 
 foreach (var item in result2)
 {
