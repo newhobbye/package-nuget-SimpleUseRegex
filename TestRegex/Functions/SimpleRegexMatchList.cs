@@ -66,12 +66,28 @@ namespace TestRegex.Functions
             return result;
         }
 
-        //rgs
+        public static string[] GetRGBrazilianIdentificationOnStringInput(string input)
+        {
+            string pattern = @"(\d{2})\.(\d{3})\.(\d{3})(\s?-?\d{1})?";
+
+            Regex regex = new(pattern, RegexOptions.Multiline);
+            MatchCollection matches = regex.Matches(input);
+
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
+
+        }
 
         //ceps
 
         //cnpjs
 
-
+        //tags html
     }
 }

@@ -26,9 +26,19 @@ string CPFs = @"CPF dos aprovados:
 - xzcsffgcvxzfc159.753.789-12
 - 466.697.090-65 fuasdiosdfd";
 
+string RGs = @"CPF dos aprovados:
+- asudiodu 48.567.890-3 asidosd
+- 23.058.669 sdadiopo
+- xzcsffgcvxzfc15.444.333 5
+- 21.878.6634 fuasdiosdfd
+
+
+      33.333.3334";
+
 //string [] result = SimpleRegexMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
 //string[] result2 = SimpleRegexMatchList.GetEmailsInStringInput(emails);
-string[] result2 = SimpleRegexMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
+//string[] result2 = SimpleRegexMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
+string[] result2 = SimpleRegexMatchList.GetRGBrazilianIdentificationOnStringInput(RGs);
 
 
 foreach (var item in result2)
