@@ -1,5 +1,7 @@
-﻿using TestRegex.Functions;
+﻿using TestRegex;
+using TestRegex.Functions;
 
+#region[Regex Match List]
 string phonesBr = @"Lista telefônica:
 -sduiasdfu rgvfiogri 2344231 44446-454 (11) 98756-1212
 -98765-4321 uidosfh duhduigohdfuioHE 
@@ -35,13 +37,68 @@ string RGs = @"CPF dos aprovados:
 
       33.333.3334";
 
+string CEPs = @"mnjiovdn dsfnjoifgh ?: dffgujwe
+g
+
+rhg 06317-050 wejhuiorguob 01234-567 123445567
+gfh 44455-22233 254455555-444 fgdeyhrryhh77777-888dfgsrth
+";
+
+string CNPJs = @"mnjiovdn dsfnjoifgh ?: dffgujwe
+g
+
+rhg 30.507.541/0001-71 wejhuiorguob 00.000.000/0001-01 123445567
+gfh 30.507.541/0001-7133 254430.507.541/0001-71 fgdeyhrryhh30.507.541/0001-71dfgsrth
+";
+
 //string [] result = SimpleRegexMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
 //string[] result2 = SimpleRegexMatchList.GetEmailsInStringInput(emails);
 //string[] result2 = SimpleRegexMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
-string[] result2 = SimpleRegexMatchList.GetRGBrazilianIdentificationOnStringInput(RGs);
+//string[] result2 = SimpleRegexMatchList.GetRGBrazilianIdentificationOnStringInput(RGs);
+//string[] result2 = SimpleRegexMatchList.GetBrazilianCEPOnStringInput(CEPs);
+//string[] result2 = SimpleRegexMatchList.GetBrazilianCNPJIdentificationOnStringInput(CNPJs);
+
+//foreach (var item in result2)
+//{
+//    Console.WriteLine(item);
+//}
+
+#endregion
+
+#region[Regex Format]
+string RemoveTags = @"<div id=""snbc"">
+
+Testando formatação e codigo do regex</div>";
+
+string formatBrazilianPhones = @"
+1125344552
+11 9 8324-2011
+1193655-4141
+(11)922554433";
+
+string[] formatBrazilianPhonesList = 
+{
+    "1125344552",
+    "11 9 8324-2011",
+    "1193655-4141",
+    "(11)922554433"
+}; 
 
 
-foreach (var item in result2)
+
+//string result = SimpleRegexFormat.RemoveTagsInAnHTMLBody(RemoveTags);
+//string result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAStringInput(formatBrazilianPhones);
+string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAListStringInput(formatBrazilianPhonesList);
+
+foreach (var item in result)
 {
     Console.WriteLine(item);
 }
+
+//Console.WriteLine(result);
+#endregion
+
+
+
+
+

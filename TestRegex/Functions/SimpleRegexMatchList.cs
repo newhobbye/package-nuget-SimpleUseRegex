@@ -9,8 +9,8 @@ namespace TestRegex.Functions
             if (input == null) return new string[input.Length];
 
             string pattern = @"((\(?\d{2}\)?)\s?)?(9{1})?\s?((\d{4,5})-?\d{4})";
-            Regex rx = new(pattern, RegexOptions.Multiline);
-            MatchCollection matches = rx.Matches(input);
+            var rx = new Regex(pattern, RegexOptions.Multiline);
+            var matches = rx.Matches(input);
 
             string[] result = new string[matches.Count];
 
@@ -33,11 +33,11 @@ namespace TestRegex.Functions
 
         public static string[] GetEmailsInStringInput(string input)
         {
-            
+
             string pattern = @"((\w+@)(\w+)\.(\w{3})?(\.\w{2})?)";
 
-            Regex regex = new(pattern, RegexOptions.IgnoreCase);
-            MatchCollection matches = regex.Matches(input);
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            var matches = regex.Matches(input);
 
             string[] result = new string[matches.Count];
 
@@ -53,8 +53,8 @@ namespace TestRegex.Functions
         {
             string pattern = @"(\d{3}\.\d{3}.\d{3}-\d{2})";
 
-            Regex regex = new(pattern, RegexOptions.Multiline);
-            MatchCollection matches = regex.Matches(input);
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            var matches = regex.Matches(input);
 
             string[] result = new string[matches.Count];
 
@@ -70,8 +70,8 @@ namespace TestRegex.Functions
         {
             string pattern = @"(\d{2})\.(\d{3})\.(\d{3})(\s?-?\d{1})?";
 
-            Regex regex = new(pattern, RegexOptions.Multiline);
-            MatchCollection matches = regex.Matches(input);
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            var matches = regex.Matches(input);
 
             string[] result = new string[matches.Count];
 
@@ -84,10 +84,61 @@ namespace TestRegex.Functions
 
         }
 
-        //ceps
+        public static string[] GetBrazilianCEPOnStringInput(string input)
+        {
+            string pattern = @"(\d{5}-\d{3})";
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            var matches = regex.Matches(input);
 
-        //cnpjs
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
+
+        }
+
+        public static string[] GetBrazilianCNPJIdentificationOnStringInput(string input)
+        {
+            string pattern = @"(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})";
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            var matches = regex.Matches(input);
+
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
+
+        }
 
         //tags html
+        //vai dar pau por causa do conceito de caixas. EX:
+
+        //<div id = "snbc" >
+        //    < div jsname="sM5MNb" aria-live="polite" class="SaJ9Qe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
+        //    <div jsname = "sM5MNb" aria-live="polite" class="tYAdEe" style="z-index:2000"></div>
+        //    <div jsname = "sM5MNb" aria-live="polite" class="tYAdEe" style="z-index:2000"></div>
+        //</div>
+        
     }
 }
