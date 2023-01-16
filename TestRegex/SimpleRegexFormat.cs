@@ -15,6 +15,8 @@ namespace TestRegex
             return regex.Replace(input, subistituition);
         }
 
+        #region[Brazilian Phones]
+
         public static string FormatBrazilianPhonesWithDDDByAStringInput(string input)
         {
             string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
@@ -41,6 +43,35 @@ namespace TestRegex
 
             return result;
         }
+
+        public static string FormatBrazilianPhonesWithoutDDDByAStringInput(string input)
+        {
+            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
+            string subistituition = @"$2 $4-$5";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, subistituition);
+        }
+
+        public static string[] FormatBrazilianPhonesWithoutDDDByAListStringInput(string[] input)
+        {
+            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
+            string subistituition = @"$2 $4-$5";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = regex.Replace(input[i], subistituition);
+            }
+
+            return result;
+        }
+
+        #endregion
 
     }
 }

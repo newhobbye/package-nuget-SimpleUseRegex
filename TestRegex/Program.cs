@@ -82,18 +82,40 @@ string[] formatBrazilianPhonesList =
     "11 9 8324-2011",
     "1193655-4141",
     "(11)922554433"
-}; 
+};
+
+string formatBrazilianPhonesWithoutDDD = @"
+
+98727-8321
+9 9342-6623
+922443322
+9 22443322
+5510-8105
+55108105";
+
+string[] formatBrazilianPhonesListWithoutDDD =
+{
+    "98727-8321",
+    "9 9342-6623",
+    "922443322",
+    "9 22443322",
+    "5510-8105",
+    "55108105"
+};
 
 
 
 //string result = SimpleRegexFormat.RemoveTagsInAnHTMLBody(RemoveTags);
 //string result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAStringInput(formatBrazilianPhones);
-string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAListStringInput(formatBrazilianPhonesList);
+//string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAListStringInput(formatBrazilianPhonesList);
+//string result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAStringInput(formatBrazilianPhonesWithoutDDD);
 
-foreach (var item in result)
-{
-    Console.WriteLine(item);
-}
+//string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAListStringInput(formatBrazilianPhonesListWithoutDDD); //new
+
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item);
+//}
 
 //Console.WriteLine(result);
 #endregion
