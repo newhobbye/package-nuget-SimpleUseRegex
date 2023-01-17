@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace TestRegex
+namespace TestRegex.Functions
 {
     public static class SimpleRegexFormat
     {
@@ -102,7 +102,6 @@ namespace TestRegex
 
         #endregion
 
-        //rg
         #region[Brazilian RG Identity]
 
         public static string FormatBrazilianIdentityRGAsString(string input)
@@ -133,9 +132,64 @@ namespace TestRegex
 
         #endregion
 
-        //cep
+        #region[Brazilian zipCode(CEP)]
 
-        //cnpj
+        public static string FormatBrazilianCEPAsString(string input)
+        {
+            string pattern = @"(\d{5})[-. ]?(\d{3})";
+            string subistituition = @"$1-$2";
 
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, subistituition);
+        }
+
+        public static string[] FormatBrazilianCEPAsStringList(string[] input)
+        {
+            string pattern = @"(\d{5})[-. ]?(\d{3})";
+            string subistituition = @"$1-$2";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = regex.Replace(input[i], subistituition);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region[Brazilian CNPJ Legal Entity Identification]
+
+        public static string FormatBrazilianCPNJAsString(string input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
+            string subistituition = @"$1.$2.$3/$4-$5";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, subistituition);
+        }
+
+        public static string[] FormatBrazilianCPNJAsStringList(string[] input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
+            string subistituition = @"$1.$2.$3/$4-$5";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = regex.Replace(input[i], subistituition);
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }

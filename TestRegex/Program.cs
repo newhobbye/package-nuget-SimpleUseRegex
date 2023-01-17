@@ -139,7 +139,40 @@ string[] rgssFormatList =
 
 };
 
+string cepFormat = @"
+00111-150
+06317050
+06317 050
+06317.050";
 
+string[] cepFormatList =
+{
+    "00111-150",
+    "06317050",
+    "06317 050",
+    "06317.050"
+
+};
+
+string cnpjFormat = @"
+82931873000182
+62.447.057/0001-90
+62447057/0001-90
+624470570001-90
+62.447.0570001-90
+62.447.057/0001 90
+62.447.0570001 90";
+
+string[] cnpjFormatList =
+{
+    "82931873000182",
+    "62.447.057/0001-90",
+    "62447057/0001-90",
+    "624470570001-90",
+    "62.447.0570001-90",
+    "62.447.057/0001 90",
+    "62.447.0570001 90"
+};
 
 //string result = SimpleRegexFormat.RemoveTagsInAnHTMLBody(RemoveTags);
 //string result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAStringInput(formatBrazilianPhones);
@@ -150,7 +183,10 @@ string[] rgssFormatList =
 //string[] result = SimpleRegexFormat.FormatBrazilianIdentityCPFAsStringList(cpfsFormatList);
 //string result = SimpleRegexFormat.FormatBrazilianIdentityRGAsString(rgsFormat);
 //string[] result = SimpleRegexFormat.FormatBrazilianIdentityRGAsStringList(rgssFormatList);
-
+//string result = SimpleRegexFormat.FormatBrazilianCEPAsString(cepFormat);
+//string[] result = SimpleRegexFormat.FormatBrazilianCEPAsStringList(cepFormatList);
+//string result = SimpleRegexFormat.FormatBrazilianCPNJAsString(cnpjFormat);
+//string[] result = SimpleRegexFormat.FormatBrazilianCPNJAsStringList(cnpjFormatList);
 
 //foreach (var item in result)
 //{
