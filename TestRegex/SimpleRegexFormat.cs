@@ -73,5 +73,69 @@ namespace TestRegex
 
         #endregion
 
+        #region[Brazilian CPF Identity]
+        public static string FormatBrazilianIdentityCPFAsString(string input)
+        {
+            string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
+            string subistituition = @"$1.$2.$3-$4";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, subistituition);
+        }
+
+        public static string[] FormatBrazilianIdentityCPFAsStringList(string[] input)
+        {
+            string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
+            string subistituition = @"$1.$2.$3-$4";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = regex.Replace(input[i], subistituition);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        //rg
+        #region[Brazilian RG Identity]
+
+        public static string FormatBrazilianIdentityRGAsString(string input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?(\d)?";
+            string subistituition = @"$1.$2.$3 $4";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, subistituition);
+        }
+
+        public static string[] FormatBrazilianIdentityRGAsStringList(string[] input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?(\d)?";
+            string subistituition = @"$1.$2.$3 $4";
+
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = regex.Replace(input[i], subistituition);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        //cep
+
+        //cnpj
+
     }
 }

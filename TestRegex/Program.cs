@@ -103,14 +103,54 @@ string[] formatBrazilianPhonesListWithoutDDD =
     "55108105"
 };
 
+string cpfsFormat = @"
+444697018-66
+111.222333 66
+111.222.333 66
+466.555.22244
+111222.333-00";
+
+string[] cpfsFormatList =
+{
+    "444697018-66",
+    "111.222333 66",
+    "111.222.333 66",
+    "466.555.22244",
+    "111222.333-00"
+};
+
+string rgsFormat = @"
+44697018-6
+11.222333 6
+11.222.333 6
+46.555.2224
+11222.333-0
+11.222.333
+11222333";
+
+string[] rgssFormatList =
+{
+    "44697018-6",
+    "11.222333 6",
+    "11.222.333 6",
+    "46.555.2224",
+    "11222.333-0",
+    "11222333",
+
+};
+
 
 
 //string result = SimpleRegexFormat.RemoveTagsInAnHTMLBody(RemoveTags);
 //string result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAStringInput(formatBrazilianPhones);
 //string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDByAListStringInput(formatBrazilianPhonesList);
 //string result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAStringInput(formatBrazilianPhonesWithoutDDD);
+//string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAListStringInput(formatBrazilianPhonesListWithoutDDD); 
+//string result = SimpleRegexFormat.FormatBrazilianIdentityCPFAsString(cpfsFormat);
+//string[] result = SimpleRegexFormat.FormatBrazilianIdentityCPFAsStringList(cpfsFormatList);
+//string result = SimpleRegexFormat.FormatBrazilianIdentityRGAsString(rgsFormat);
+//string[] result = SimpleRegexFormat.FormatBrazilianIdentityRGAsStringList(rgssFormatList);
 
-//string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAListStringInput(formatBrazilianPhonesListWithoutDDD); //new
 
 //foreach (var item in result)
 //{
