@@ -25,5 +25,25 @@ namespace TestRegex.Functions
 
             return true;
         }
+
+        public static bool RemoveMaskCPF(string cpf, out string output)
+        {
+            string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
+            string subistituition = @"$1$2$3$4";
+
+            var regex = new Regex(pattern);
+
+            output = regex.Replace(cpf, subistituition);
+
+            if(output.Length != 11)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        
     }
 }

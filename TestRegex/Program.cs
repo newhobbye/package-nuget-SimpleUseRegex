@@ -196,6 +196,14 @@ string[] cnpjFormatList =
 //Console.WriteLine(result);
 #endregion
 
+#region[Regex Validations]
+
+string cpf = "529.982.247-25";
+
+bool valid = SimpleRegexValidations.BrazilianCPFValid(cpf);
+
+#endregion
+
 
 
 
