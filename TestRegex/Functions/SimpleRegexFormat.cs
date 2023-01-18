@@ -103,10 +103,10 @@ namespace TestRegex.Functions
         #endregion
 
         #region[Brazilian RG Identity]
-
+        //testar novamente
         public static string FormatBrazilianIdentityRGAsString(string input)
         {
-            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?(\d)?";
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
             string subistituition = @"$1.$2.$3 $4";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
@@ -116,7 +116,7 @@ namespace TestRegex.Functions
 
         public static string[] FormatBrazilianIdentityRGAsStringList(string[] input)
         {
-            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?(\d)?";
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
             string subistituition = @"$1.$2.$3 $4";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);

@@ -1,4 +1,6 @@
-﻿namespace TestRegex.Functions
+﻿using System.Text.RegularExpressions;
+
+namespace TestRegex.Functions
 {
     public static class SimpleRegexValidations
     {
@@ -39,11 +41,55 @@
             
         }
 
+        public static bool BrazilianRGValidSP(string rgSP)
+        {
+            int[] numbersOfRG = new int[8];
+            string finalDigit = string.Empty;
+
+            string rgSpWithoutFinalDigit = TransformRGSPInNumberWithoutFinalDigit(rgSP, out finalDigit);
+
+            try
+            {
+                numbersOfRG = ConvertStringInArrayNumber(rgSpWithoutFinalDigit);
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+            int sumValues = SumMultipliedNumbers(numbersOfRG, 2);
+
+            int remainderValue = sumValues % 11;
+
+            int finalValue = 11 - remainderValue;
+
+            
+
+            if(finalValue == int.Parse(finalDigit))
+            {
+                return true;
+            }
+            else if (finalValue == 10 && finalDigit == "x")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
 
         #region[Auxiliary CPF Validation Functions]
 
         private static int CalculateMultiplicationByEachNumber(int number, int multiplication)
         {
+            if(number == 0)
+            {
+                return number;
+            }
             return number * multiplication;
         }
 
@@ -78,6 +124,55 @@
             return arrayOfNumbers;
         }
 
+        #endregion
+
+        #region[Auxiliary RG Validation Functions]
+
+        private static int CalculatesMultiplicationOfNumbers(int value, int multiplication)
+        {
+            if(value == 0)
+            {
+                return value;
+            }
+
+            return value * multiplication;
+        }
+
+        private static int[] ConvertStringInArrayNumber(string rgSP)
+        {
+            int[] array = new int[8];
+
+            for (int i = 0; i < 8; i++)
+            {
+                array[i] = Convert.ToInt32(rgSP[i].ToString());
+            }
+
+            return array;
+        }
+
+        private static int SumMultipliedNumbers(int[] array, int multiplicationPower)
+        {
+            int sum = 0;    
+            for (int i = 0; i < 8; i++)
+            {
+                sum += CalculatesMultiplicationOfNumbers(array[i], multiplicationPower);
+                multiplicationPower++;
+            }
+
+            return sum;
+        }
+
+        private static string TransformRGSPInNumberWithoutFinalDigit(string rgSP, out string finalDigit)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])";
+            string subistituition = @"$1$2$3";
+
+            var regex = new Regex(pattern);
+
+            finalDigit = regex.Replace(rgSP, @"$4".ToLower());
+
+            return regex.Replace(rgSP, subistituition);
+        }
         #endregion
     }
 }
