@@ -43,6 +43,7 @@ namespace TestRegex.Functions
 
         public static bool BrazilianRGValidSP(string rgSP)
         {
+            // referencia de calculo = https://marquesfernandes.com/self/como-saber-e-validar-o-digito-verificador-do-rg-registro-geral/
             int[] numbersOfRG = new int[8];
             string finalDigit = string.Empty;
 
@@ -74,12 +75,69 @@ namespace TestRegex.Functions
             {
                 return true;
             }
+            else if (finalValue == 11 && finalDigit == "0")
+            {
+                return true;
+            }
             else
             {
                 return false;
             }
 
 
+        }
+
+        public static bool BrazilianCNPJValid(string cnpj)
+        {
+            //referencia de calculos =
+            //https://www.macoratti.net/alg_cnpj.htm#:~:text=Algoritmo%20para%20valida%C3%A7%C3%A3o%20do%20CNPJ&text=O%20n%C3%BAmero%20que%20comp%C3%B5e%20o,que%20s%C3%A3o%20os%20d%C3%ADgitos%20verificadores.
+
+            string finalDigits;
+            string cnpjWithoutFinalDigits = GetCNPJNumbersWithoutFinalDigits(cnpj, out finalDigits);
+            List<int> numbers = ConvertStringCNPJInArrayNumbers(cnpjWithoutFinalDigits);
+
+            int sumPrimaryDigit = Sum(numbers, 5, 9, 4, 4);
+
+            int primaryRemainderValue = sumPrimaryDigit % 11;
+            int decretedPrimaryFinalDigit = 0;
+
+            if(primaryRemainderValue < 2)
+            {
+                decretedPrimaryFinalDigit = 0;
+            }
+            else
+            {
+                decretedPrimaryFinalDigit = 11 - primaryRemainderValue;
+            }
+
+            numbers.Add(decretedPrimaryFinalDigit);
+
+            int sumSecondDigit = Sum(numbers, 6, 9, 5, 5);
+
+            int secondRemainderValue = sumSecondDigit % 11;
+            int decretedSecondFinalDigit = 0;
+
+            if (secondRemainderValue < 2)
+            {
+                decretedSecondFinalDigit = 0;
+            }
+            else
+            {
+                decretedSecondFinalDigit = 11 - secondRemainderValue;
+            }
+
+            string digitsCapturedFromCalculations = $"{decretedPrimaryFinalDigit}{decretedSecondFinalDigit}";
+
+            if(digitsCapturedFromCalculations == finalDigits)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         #region[Auxiliary CPF Validation Functions]
@@ -173,6 +231,63 @@ namespace TestRegex.Functions
 
             return regex.Replace(rgSP, subistituition);
         }
+        #endregion
+
+        #region[Auxiliary CNPJ Validation Functions]
+
+        private static string GetCNPJNumbersWithoutFinalDigits(string cpnj, out string finalDigits)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})?";
+            string subistitution = @"$1$2$3$4";
+
+            var regex = new Regex(pattern);
+
+            finalDigits = regex.Replace(cpnj, "$5");
+
+            return regex.Replace(cpnj, subistitution);
+        }
+        private static List<int> ConvertStringCNPJInArrayNumbers(string cnpj)
+        {
+            List<int> array = new List<int>();
+
+            for (int i = 0; i < cnpj.Length; i++)
+            {
+                array.Add(int.Parse(cnpj[i].ToString()));
+            }
+
+            return array;
+        }
+
+        private static int Sum(List<int> array, int primaryMultiplication, int secondMultiplication, int countPrimaryLoop, 
+            int countSecondLoop)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < countPrimaryLoop; i++)
+            {
+                sum += Multiplication(array[i], primaryMultiplication);
+                primaryMultiplication--;
+            }
+
+            for (int i = countSecondLoop; i < array.Count; i++)
+            {
+                sum += Multiplication(array[i], secondMultiplication);
+                secondMultiplication--;
+            }
+
+            return sum;
+
+        }
+
+        private static int Multiplication(int value, int multiplicationValue)
+        {
+            if (value == 0)
+            {
+                return value;
+            }
+            return value * multiplicationValue;
+        }
+
         #endregion
     }
 }
