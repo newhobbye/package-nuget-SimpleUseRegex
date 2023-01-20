@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRegex", "TestRegex\TestRegex.csproj", "{B5299002-7659-4D56-8C32-C003ADDA5F40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRegex", "TestRegex\TestRegex.csproj", "{B5299002-7659-4D56-8C32-C003ADDA5F40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexUnityTests", "RegexUnityTests\RegexUnityTests.csproj", "{E070D791-7011-4B36-9C5F-2DD7E9CF10B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B5299002-7659-4D56-8C32-C003ADDA5F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5299002-7659-4D56-8C32-C003ADDA5F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5299002-7659-4D56-8C32-C003ADDA5F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E070D791-7011-4B36-9C5F-2DD7E9CF10B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E070D791-7011-4B36-9C5F-2DD7E9CF10B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E070D791-7011-4B36-9C5F-2DD7E9CF10B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E070D791-7011-4B36-9C5F-2DD7E9CF10B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,14 +5,14 @@ namespace TestRegex.Functions
     public static class SimpleRegexValidations
     {
 
-        public static bool SimpleUseMatchRegex(string expression, string input) //testar
+        public static bool SimpleUseMatchRegex(string expression, string input) 
         {
             var regex = new Regex(expression);
 
             return regex.IsMatch(input);
         }
 
-        public static bool SimpleUseMatchRegex(string expression, string input, RegexOptions flag) //testar
+        public static bool SimpleUseMatchRegex(string expression, string input, RegexOptions flag) 
         {
             var regex = new Regex(expression, flag);
 
