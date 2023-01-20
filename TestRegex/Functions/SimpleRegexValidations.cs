@@ -1,7 +1,24 @@
-﻿namespace TestRegex.Functions
+﻿using System.Text.RegularExpressions;
+
+namespace TestRegex.Functions
 {
     public static class SimpleRegexValidations
     {
+
+        public static bool SimpleUseMatchRegex(string expression, string input) //testar
+        {
+            var regex = new Regex(expression);
+
+            return regex.IsMatch(input);
+        }
+
+        public static bool SimpleUseMatchRegex(string expression, string input, RegexOptions flag) //testar
+        {
+            var regex = new Regex(expression, flag);
+
+            return regex.IsMatch(input);
+        }
+
         public static bool BrazilianCPFValid(string cpf)
         {
             //base das informações de calculo: https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/

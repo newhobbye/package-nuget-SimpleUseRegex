@@ -4,6 +4,22 @@ namespace TestRegex.Functions
 {
     public static class SimpleRegexMatchList
     {
+
+        public static string[] SimpleUseMatchesListRegex(string expression, string input, RegexOptions flag)
+        {
+            var regex = new Regex(expression, flag);
+            var matches = regex.Matches(input);
+
+            string[] result = new string[matches.Count];
+
+            for (int i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].ToString();
+            }
+
+            return result;
+        }
+
         public static string[] PickUpBrazilianPhonesOnAStringInput(string input)
         {
             if (input == null) return new string[input.Length];

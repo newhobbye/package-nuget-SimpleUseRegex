@@ -15,6 +15,20 @@ namespace TestRegex.Functions
             return regex.Replace(input, subistituition);
         }
 
+        public static string SimpleUseReplaceRegex(string expression, string input, string groupsPosition)
+        {
+            var regex = new Regex(expression);
+
+            return regex.Replace(input, groupsPosition);
+        }
+
+        public static string SimpleUseReplaceRegex(string expression, string input, string groupsPosition, RegexOptions flag)
+        {
+            var regex = new Regex(expression, flag);
+
+            return regex.Replace(input, groupsPosition);
+        }
+
         #region[Brazilian Phones]
 
         public static string FormatBrazilianPhonesWithDDDByAStringInput(string input)
@@ -191,5 +205,7 @@ namespace TestRegex.Functions
         }
 
         #endregion
+
+
     }
 }
