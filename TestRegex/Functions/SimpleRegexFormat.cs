@@ -38,7 +38,9 @@ namespace TestRegex.Functions
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
 
-            return regex.Replace(input, subistituition);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespaceOnBrazilianPhonesString(result);
+            return result;
         }
 
         public static string[] FormatBrazilianPhonesWithDDDByAListStringInput(string[] input)
@@ -61,11 +63,13 @@ namespace TestRegex.Functions
         public static string FormatBrazilianPhonesWithoutDDDByAStringInput(string input)
         {
             string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
-            string subistituition = @"$2 $4-$5";
+            string subistituition = @"$2$4-$5";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespaceOnBrazilianPhonesString(result);
 
-            return regex.Replace(input, subistituition);
+            return result;
         }
 
         public static string[] FormatBrazilianPhonesWithoutDDDByAListStringInput(string[] input)

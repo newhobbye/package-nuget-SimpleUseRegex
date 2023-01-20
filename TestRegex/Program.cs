@@ -66,23 +66,11 @@ gfh 30.507.541/0001-7133 254430.507.541/0001-71 fgdeyhrryhh30.507.541/0001-71dfg
 #endregion
 
 #region[Regex Format]
-string RemoveTags = @"<div id=""snbc"">
 
-Testando formatação e codigo do regex</div>";
 
-string formatBrazilianPhones = @"
-1125344552
-11 9 8324-2011
-1193655-4141
-(11)922554433";
 
-string[] formatBrazilianPhonesList = 
-{
-    "1125344552",
-    "11 9 8324-2011",
-    "1193655-4141",
-    "(11)922554433"
-};
+
+
 
 string formatBrazilianPhonesWithoutDDD = @"
 
@@ -196,18 +184,7 @@ string[] cnpjFormatList =
 //Console.WriteLine(result);
 #endregion
 
-#region[Regex Validations]
 
-
-
-
-
-string cnpj = "11.222.333/0001-81";
-
-
-
-bool valid = SimpleRegexValidations.BrazilianCNPJValid(cnpj);
-#endregion
 
 
 

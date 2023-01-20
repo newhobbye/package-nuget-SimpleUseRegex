@@ -26,6 +26,14 @@ namespace TestRegex.Functions
             return true;
         }
 
+        internal static string RemoveWritespaceOnBrazilianPhonesString(string input)
+        {
+            string pattern = @"([\s ]{10,})";
+            var regex = new Regex(pattern, RegexOptions.Multiline);
+
+            return regex.Replace(input, @"\n");
+        }
+
 
 
         #region[Auxiliary CPF Functions]
