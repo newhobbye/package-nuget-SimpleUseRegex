@@ -1,4 +1,5 @@
-﻿using TestRegex.Functions;
+﻿using System.Text.RegularExpressions;
+using TestRegex.Functions;
 using Xunit;
 
 namespace RegexUnityTests.Functions
@@ -18,6 +19,30 @@ namespace RegexUnityTests.Functions
 
             Assert.Equal(expected, result);
 
+        }
+
+        [Fact(DisplayName = "Forma simplificada de usar o Replace do Regex")]
+        public void SimpleUseReplaceRegexTest()
+        {
+            string expression = @"(\d{3}) (\d{2})";
+            string input = "555 44";
+            string replace = "$2 $1";
+
+            string expected = "44 555";
+            string result = SimpleRegexFormat.SimpleUseReplaceRegex(expression, input, replace);
+            Assert.Equal(expected, result);
+        }
+
+        [Fact(DisplayName = "Forma simplificada de usar o Replace do Regex passando flag")]
+        public void SimpleUseReplaceRegexFlagTest()
+        {
+            string expression = @"(\d{3}) (\d{2})";
+            string input = "555 44";
+            string replace = "$2 $1";
+
+            string expected = "44 555";
+            string result = SimpleRegexFormat.SimpleUseReplaceRegex(expression, input, replace, RegexOptions.Multiline);
+            Assert.Equal(expected, result);
         }
 
         #region[Telefones com DDD]
@@ -86,7 +111,231 @@ namespace RegexUnityTests.Functions
 
             Assert.Equal(expected, result);
 
-            //parei no formatador de array
+        }
+
+        [Fact(DisplayName = "Formatador de telefones brasileiros sem DDD com entrada de array")]
+        public void FormatBrazilianPhonesWithoutDDDByAListStringInputTest()
+        {
+            string[] formatBrazilianPhonesListWithoutDDD =
+            {
+                "98727-8321",
+                "9 9342-6623",
+                "922443322",
+                "9 22443322",
+                "5510-8105",
+                "55108105"
+            };
+
+            string[] expected =
+            {
+                "98727-8321",
+                "99342-6623",
+                "92244-3322",
+                "92244-3322",
+                "5510-8105",
+                "5510-8105"
+            };
+
+            string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDByAListStringInput(formatBrazilianPhonesListWithoutDDD);
+
+            Assert.Equal(expected, result);
+
+        }
+
+
+
+        #endregion
+
+        #region[CPF]
+
+        [Fact(DisplayName = "Formatador de cpf de uma string")]
+        public void FormatBrazilianIdentityCPFAsStringTest()
+        {
+            string cpfsFormat = @"
+                444697018-66
+                111.222333 66
+                111.222.333 66
+                466.555.22244
+                111222.333-00";
+
+            string expected = @"\n444.697.018-66\n111.222.333-66\n111.222.333-66\n466.555.222-44\n111.222.333-00";
+
+            string result = SimpleRegexFormat.FormatBrazilianIdentityCPFAsString(cpfsFormat);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact(DisplayName = "Formatador de cpf de um array de strings")]
+        public void FormatBrazilianIdentityCPFAsStringListTest()
+        {
+            string[] cpfsFormatList =
+            {
+                "444697018-66",
+                "111.222333 66",
+                "111.222.333 66",
+                "466.555.22244",
+                "111222.333-00"
+            };
+
+            string[] expected =
+            {
+                "444.697.018-66",
+                "111.222.333-66",
+                "111.222.333-66",
+                "466.555.222-44",
+                "111.222.333-00"
+            };
+
+            string[] result = SimpleRegexFormat.FormatBrazilianIdentityCPFAsStringList(cpfsFormatList);
+
+            Assert.Equal(expected, result);
+        }
+
+
+        #endregion
+
+        #region[RG]
+
+        [Fact(DisplayName = "Formatador de rg de uma string")]
+        public void FormatBrazilianIdentityRGAsStringTest()
+        {
+            string rgsFormat = @"
+            44697018-6
+            11.222333 6
+            11.222.333 6
+            46.555.2224
+            11222.333-0
+            11.222.333
+            11222333";
+
+            string expected = @"\n44.697.018 6\n11.222.333 6\n11.222.333 6\n46.555.222 4\n11.222.333 0\n11.222.333\n11.222.333 ";
+
+            string result = SimpleRegexFormat.FormatBrazilianIdentityRGAsString(rgsFormat);
+            Assert.Equal(expected, result); 
+        }
+
+        [Fact(DisplayName = "Formatador de rg de um array de strings")]
+        public void FormatBrazilianIdentityRGAsStringListTest()
+        {
+            string[] rgssFormatList =
+            {
+                "44697018-6",
+                "11.222333 6",
+                "11.222.333 6",
+                "46.555.2224",
+                "11222.333-0",
+                "11222333",
+
+            };
+
+            string[] expected =
+            {
+                "44.697.018 6",
+                "11.222.333 6",
+                "11.222.333 6",
+                "46.555.222 4",
+                "11.222.333 0",
+                "11.222.333 ",
+
+            };
+
+            string[] result = SimpleRegexFormat.FormatBrazilianIdentityRGAsStringList(rgssFormatList);
+            Assert.Equal(expected, result);
+        }
+
+        #endregion
+
+        #region[CEP]
+
+        [Fact(DisplayName = "Formatador de CEP de uma string")]
+        public void FormatBrazilianCEPAsStringTest()
+        {
+            string cepFormat = @"
+                00111-150
+                06317050
+                06317 050
+                06317.050";
+
+            string expected = @"\n00111-150\n06317-050\n06317-050\n06317-050";
+
+            string result = SimpleRegexFormat.FormatBrazilianCEPAsString(cepFormat);
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact(DisplayName = "Formatador de CEP de um array de strings")]
+        public void FormatBrazilianCEPAsStringListTest()
+        {
+            string[] cepFormatList =
+            {
+                "00111-150",
+                "06317050",
+                "06317 050",
+                "06317.050"
+            };
+
+            string[] expected =
+            {
+                "00111-150",
+                "06317-050",
+                "06317-050",
+                "06317-050"
+            };
+
+            string[] result = SimpleRegexFormat.FormatBrazilianCEPAsStringList(cepFormatList);
+
+            Assert.Equal(expected, result);
+        }
+
+        #endregion
+
+        #region[CNPJ]
+
+        [Fact(DisplayName = "Formatador de cnpj de uma string")]
+        public void FormatBrazilianCPNJAsStringTest()
+        {
+            string cnpjFormat = @"
+            82931873000182
+            62.447.057/0001-90
+            62447057/0001-90
+            624470570001-90
+            62.447.0570001-90
+            62.447.057/0001 90
+            62.447.0570001 90";
+
+            string expected = @"\n82.931.873/0001-82\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90";
+
+            string result = SimpleRegexFormat.FormatBrazilianCPNJAsString(cnpjFormat);
+            Assert.Equal(expected, result);
+        }
+
+        [Fact(DisplayName = "Formatador de cnpj de um array de strings")]
+        public void FormatBrazilianCPNJAsStringListTest()
+        {
+            string[] cnpjFormatList =
+            {
+                "82931873000182",
+                "62.447.057/0001-90",
+                "62447057/0001-90",
+                "624470570001-90",
+                "62.447.0570001-90",
+                "62.447.057/0001 90",
+                "62.447.0570001 90"
+            };
+
+            string[] expected =
+            {
+                "82.931.873/0001-82",
+                "62.447.057/0001-90",
+                "62.447.057/0001-90",
+                "62.447.057/0001-90",
+                "62.447.057/0001-90",
+                "62.447.057/0001-90",
+                "62.447.057/0001-90"
+            };
+
+            string[] result = SimpleRegexFormat.FormatBrazilianCPNJAsStringList(cnpjFormatList);
+            Assert.Equal(expected, result);
         }
 
         #endregion

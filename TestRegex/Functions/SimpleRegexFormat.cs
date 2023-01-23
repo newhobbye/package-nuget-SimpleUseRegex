@@ -3,7 +3,7 @@
 namespace TestRegex.Functions
 {
     public static class SimpleRegexFormat
-    {
+    { //posteriormente, colocar metodos com entrada de string e retorno de string[]
 
         public static string RemoveTagsInAnHTMLBody(string input)
         {
@@ -15,18 +15,18 @@ namespace TestRegex.Functions
             return regex.Replace(input, subistituition);
         }
 
-        public static string SimpleUseReplaceRegex(string expression, string input, string groupsPosition)
+        public static string SimpleUseReplaceRegex(string expression, string input, string replace)
         {
             var regex = new Regex(expression);
 
-            return regex.Replace(input, groupsPosition);
+            return regex.Replace(input, replace);
         }
 
-        public static string SimpleUseReplaceRegex(string expression, string input, string groupsPosition, RegexOptions flag)
+        public static string SimpleUseReplaceRegex(string expression, string input, string replace, RegexOptions flag)
         {
             var regex = new Regex(expression, flag);
 
-            return regex.Replace(input, groupsPosition);
+            return regex.Replace(input, replace);
         }
 
         #region[Brazilian Phones]
@@ -39,7 +39,7 @@ namespace TestRegex.Functions
             var regex = new Regex(pattern, RegexOptions.Multiline);
 
             string result = regex.Replace(input, subistituition);
-            result = SubFunctions.RemoveWritespaceOnBrazilianPhonesString(result);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
             return result;
         }
 
@@ -67,7 +67,7 @@ namespace TestRegex.Functions
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
             string result = regex.Replace(input, subistituition);
-            result = SubFunctions.RemoveWritespaceOnBrazilianPhonesString(result);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
 
             return result;
         }
@@ -75,7 +75,7 @@ namespace TestRegex.Functions
         public static string[] FormatBrazilianPhonesWithoutDDDByAListStringInput(string[] input)
         {
             string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
-            string subistituition = @"$2 $4-$5";
+            string subistituition = @"$2$4-$5";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
 
@@ -98,8 +98,10 @@ namespace TestRegex.Functions
             string subistituition = @"$1.$2.$3-$4";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
 
-            return regex.Replace(input, subistituition);
+            return result;
         }
 
         public static string[] FormatBrazilianIdentityCPFAsStringList(string[] input)
@@ -121,15 +123,16 @@ namespace TestRegex.Functions
         #endregion
 
         #region[Brazilian RG Identity]
-        //testar novamente
         public static string FormatBrazilianIdentityRGAsString(string input)
         {
             string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
             string subistituition = @"$1.$2.$3 $4";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
 
-            return regex.Replace(input, subistituition);
+            return result;
         }
 
         public static string[] FormatBrazilianIdentityRGAsStringList(string[] input)
@@ -158,8 +161,9 @@ namespace TestRegex.Functions
             string subistituition = @"$1-$2";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            return regex.Replace(input, subistituition);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
+            return result;
         }
 
         public static string[] FormatBrazilianCEPAsStringList(string[] input)
@@ -188,8 +192,9 @@ namespace TestRegex.Functions
             string subistituition = @"$1.$2.$3/$4-$5";
 
             var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            return regex.Replace(input, subistituition);
+            string result = regex.Replace(input, subistituition);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
+            return result;
         }
 
         public static string[] FormatBrazilianCPNJAsStringList(string[] input)

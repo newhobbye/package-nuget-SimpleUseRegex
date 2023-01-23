@@ -26,7 +26,7 @@ namespace TestRegex.Functions
             return true;
         }
 
-        internal static string RemoveWritespaceOnBrazilianPhonesString(string input)
+        internal static string RemoveWritespacesOnStringResult(string input)
         {
             string pattern = @"([\s ]{10,})";
             var regex = new Regex(pattern, RegexOptions.Multiline);
