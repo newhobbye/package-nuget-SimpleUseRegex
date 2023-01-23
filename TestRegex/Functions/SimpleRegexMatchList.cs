@@ -25,15 +25,7 @@ namespace TestRegex.Functions
             if (input == null) return new string[input.Length];
 
             string pattern = @"((\(?\d{2}\)?)\s?)?(9{1})?\s?((\d{4,5})-?\d{4})";
-            var rx = new Regex(pattern, RegexOptions.Multiline);
-            var matches = rx.Matches(input);
-
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
 
             if (SubFunctions.RemoveWritespaceOnBrazilianPhones(result, out result))
             {
@@ -102,7 +94,8 @@ namespace TestRegex.Functions
 
         public static string[] GetBrazilianCEPOnStringInput(string input)
         {
-            string pattern = @"(\d{5}-\d{3})";
+            string pattern = @"\b(\d{5}-\d{3})\b"; //pattern que só pega se for separado
+            //(\d{5}-\d{3}) = Pattern que pega até em meio a outros numeros e textos
             var regex = new Regex(pattern, RegexOptions.Multiline);
             var matches = regex.Matches(input);
 
