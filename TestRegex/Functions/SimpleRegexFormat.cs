@@ -9,10 +9,7 @@ namespace TestRegex.Functions
         {
             string pattern = @"(<\w+.+?>)(\s+)?(.+?)(\s+)?(<\/\w+>)";
             string subistituition = @"$3";
-
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            return regex.Replace(input, subistituition);
+            return SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
         }
 
         public static string SimpleUseReplaceRegex(string expression, string input, string replace)
@@ -36,14 +33,12 @@ namespace TestRegex.Functions
             string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
             string subistituition = @"($2) $4$5-$6";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            string result = regex.Replace(input, subistituition);
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
             result = SubFunctions.RemoveWritespacesOnStringResult(result);
             return result;
         }
 
-        public static string[] FormatBrazilianPhonesWithDDDByAListStringInput(string[] input)
+        public static string[] FormatBrazilianPhonesWithDDDByAListStringInput(string[] input) //parei aqui. Criar metodo 
         {
             string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
             string subistituition = @"($2) $4$5-$6";

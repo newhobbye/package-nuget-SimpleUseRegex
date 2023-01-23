@@ -33,26 +33,18 @@ namespace TestRegex.Functions
             }
             else
             {
-                result = new string[0];
-                return result;
+                 return Array.Empty<string>();
+                
             }
 
         }
 
         public static string[] GetEmailsInStringInput(string input)
         {
-
             string pattern = @"((\w+@)(\w+)\.(\w{3})?(\.\w{2})?)";
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.IgnoreCase);
 
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            var matches = regex.Matches(input);
-
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            if(result == null) return Array.Empty<string>();
 
             return result;
         }
@@ -60,16 +52,9 @@ namespace TestRegex.Functions
         public static string[] GetCPFBrazilianIdentificationOnStringInput(string input)
         {
             string pattern = @"(\d{3}\.\d{3}.\d{3}-\d{2})";
-
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            var matches = regex.Matches(input);
-
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            
+            if (result == null) return Array.Empty<string>();
 
             return result;
         }
@@ -77,16 +62,9 @@ namespace TestRegex.Functions
         public static string[] GetRGBrazilianIdentificationOnStringInput(string input)
         {
             string pattern = @"(\d{2})\.(\d{3})\.(\d{3})(\s?-?\d{1})?";
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            var matches = regex.Matches(input);
-
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            if (result == null) return new string[0];
 
             return result;
 
@@ -96,15 +74,9 @@ namespace TestRegex.Functions
         {
             string pattern = @"\b(\d{5}-\d{3})\b"; //pattern que só pega se for separado
             //(\d{5}-\d{3}) = Pattern que pega até em meio a outros numeros e textos
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            var matches = regex.Matches(input);
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
 
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            if (result == null) return Array.Empty<string>();
 
             return result;
 
@@ -113,15 +85,9 @@ namespace TestRegex.Functions
         public static string[] GetBrazilianCNPJIdentificationOnStringInput(string input)
         {
             string pattern = @"(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})";
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            var matches = regex.Matches(input);
+            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
 
-            string[] result = new string[matches.Count];
-
-            for (int i = 0; i < matches.Count; i++)
-            {
-                result[i] = matches[i].ToString();
-            }
+            if (result == null) return Array.Empty<string>();
 
             return result;
 
