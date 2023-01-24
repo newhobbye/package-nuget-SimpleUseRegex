@@ -3,7 +3,7 @@
 namespace TestRegex.Functions
 {
     public static class SimpleRegexFormat
-    { //posteriormente, colocar metodos com entrada de string e retorno de string[]
+    { 
 
         public static string RemoveTagsInAnHTMLBody(string input)
         {
@@ -28,7 +28,7 @@ namespace TestRegex.Functions
 
         #region[Brazilian Phones]
 
-        public static string FormatBrazilianPhonesWithDDDByAStringInput(string input)
+        public static string FormatBrazilianPhonesWithDDD(string input)
         {
             string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
             string subistituition = @"($2) $4$5-$6";
@@ -38,47 +38,72 @@ namespace TestRegex.Functions
             return result;
         }
 
-        public static string[] FormatBrazilianPhonesWithDDDByAListStringInput(string[] input) //parei aqui. Criar metodo 
+        public static string[] FormatBrazilianPhonesWithDDDReturnArray(string input)
         {
             string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
             string subistituition = @"($2) $4$5-$6";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = new string[matches.Length];
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            string[] result = new string[input.Length];
-
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < matches.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i].ToString(), subistituition, RegexOptions.Multiline);
             }
 
             return result;
         }
 
-        public static string FormatBrazilianPhonesWithoutDDDByAStringInput(string input)
+        public static string[] FormatBrazilianPhonesWithDDD(string[] input) 
         {
-            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
-            string subistituition = @"$2$4-$5";
-
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            string result = regex.Replace(input, subistituition);
-            result = SubFunctions.RemoveWritespacesOnStringResult(result);
-
-            return result;
-        }
-
-        public static string[] FormatBrazilianPhonesWithoutDDDByAListStringInput(string[] input)
-        {
-            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
-            string subistituition = @"$2$4-$5";
-
-            var regex = new Regex(pattern, RegexOptions.Multiline);
+            string pattern = @"(\()?(\d{2})(\))?\s?(\d)?\s?(\d{4,5})-?(\d{4})";
+            string subistituition = @"($2) $4$5-$6";
 
             string[] result = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string FormatBrazilianPhonesWithoutDDD(string input)
+        {
+            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
+            string subistituition = @"$2$4-$5";
+
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
+            result = SubFunctions.RemoveWritespacesOnStringResult(result);
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianPhonesWithoutDDDReturnArray(string input)
+        {
+            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
+            string subistituition = @"$2$4-$5";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = new string[matches.Length];
+
+            for (int i = 0; i < matches.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i].ToString(), subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianPhonesWithoutDDD(string[] input)
+        {
+            string pattern = @"((9)?( )?)(\d{4,5})-?(\d{4})";
+            string subistituition = @"$2$4-$5";
+
+            string[] result = new string[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
             }
 
             return result;
@@ -87,29 +112,43 @@ namespace TestRegex.Functions
         #endregion
 
         #region[Brazilian CPF Identity]
-        public static string FormatBrazilianIdentityCPFAsString(string input)
+        public static string FormatBrazilianIdentityCPF(string input)
         {
             string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
             string subistituition = @"$1.$2.$3-$4";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            string result = regex.Replace(input, subistituition);
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
             result = SubFunctions.RemoveWritespacesOnStringResult(result);
 
             return result;
         }
 
-        public static string[] FormatBrazilianIdentityCPFAsStringList(string[] input)
+        public static string[] FormatBrazilianIdentityCPFReturnArray(string input)
+        {
+            string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
+            string subistituition = @"$1.$2.$3-$4";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+
+            string[] result = new string[matches.Length];
+
+            for (int i = 0; i < matches.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i], subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianIdentityCPF(string[] input)
         {
             string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
             string subistituition = @"$1.$2.$3-$4";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
             string[] result = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
             }
 
             return result;
@@ -118,29 +157,43 @@ namespace TestRegex.Functions
         #endregion
 
         #region[Brazilian RG Identity]
-        public static string FormatBrazilianIdentityRGAsString(string input)
+        public static string FormatBrazilianIdentityRG(string input)
         {
             string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
             string subistituition = @"$1.$2.$3 $4";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            string result = regex.Replace(input, subistituition);
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
             result = SubFunctions.RemoveWritespacesOnStringResult(result);
 
             return result;
         }
 
-        public static string[] FormatBrazilianIdentityRGAsStringList(string[] input)
+        public static string[] FormatBrazilianIdentityRGReturnArray(string input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
+            string subistituition = @"$1.$2.$3 $4";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+
+            string[] result = new string[matches.Length];
+
+            for (int i = 0; i < matches.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i], subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianIdentityRG(string[] input)
         {
             string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])?";
             string subistituition = @"$1.$2.$3 $4";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
             string[] result = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
             }
 
             return result;
@@ -150,28 +203,42 @@ namespace TestRegex.Functions
 
         #region[Brazilian zipCode(CEP)]
 
-        public static string FormatBrazilianCEPAsString(string input)
+        public static string FormatBrazilianCEP(string input)
         {
             string pattern = @"(\d{5})[-. ]?(\d{3})";
             string subistituition = @"$1-$2";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            string result = regex.Replace(input, subistituition);
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
             result = SubFunctions.RemoveWritespacesOnStringResult(result);
             return result;
         }
 
-        public static string[] FormatBrazilianCEPAsStringList(string[] input)
+        public static string[] FormatBrazilianCEPReturnArray(string input)
+        {
+            string pattern = @"(\d{5})[-. ]?(\d{3})";
+            string subistituition = @"$1-$2";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+
+            string[] result = new string[matches.Length];
+
+            for (int i = 0; i < matches.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i], subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianCEP(string[] input)
         {
             string pattern = @"(\d{5})[-. ]?(\d{3})";
             string subistituition = @"$1-$2";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
             string[] result = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
             }
 
             return result;
@@ -181,28 +248,42 @@ namespace TestRegex.Functions
 
         #region[Brazilian CNPJ Legal Entity Identification]
 
-        public static string FormatBrazilianCPNJAsString(string input)
+        public static string FormatBrazilianCPNJ(string input)
         {
             string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
             string subistituition = @"$1.$2.$3/$4-$5";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-            string result = regex.Replace(input, subistituition);
+            string result = SimpleUseReplaceRegex(pattern, input, subistituition, RegexOptions.Multiline);
             result = SubFunctions.RemoveWritespacesOnStringResult(result);
             return result;
         }
 
-        public static string[] FormatBrazilianCPNJAsStringList(string[] input)
+        public static string[] FormatBrazilianCPNJReturnArray(string input)
+        {
+            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
+            string subistituition = @"$1.$2.$3/$4-$5";
+            string[] matches = SimpleRegexMatchList.SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+
+            string[] result = new string[matches.Length];
+
+            for (int i = 0; i < matches.Length; i++)
+            {
+                result[i] = SimpleUseReplaceRegex(pattern, matches[i], subistituition, RegexOptions.Multiline);
+            }
+
+            return result;
+        }
+
+        public static string[] FormatBrazilianCPNJ(string[] input)
         {
             string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
             string subistituition = @"$1.$2.$3/$4-$5";
 
-            var regex = new Regex(pattern, RegexOptions.Multiline);
             string[] result = new string[input.Length];
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = regex.Replace(input[i], subistituition);
+                result[i] = SimpleUseReplaceRegex(pattern, input[i], subistituition, RegexOptions.Multiline);
             }
 
             return result;
