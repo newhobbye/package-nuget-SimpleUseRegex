@@ -204,6 +204,80 @@ namespace TestRegex.Functions
 
         #endregion
 
+        #region[Auxiliary TitleVote Functions]
+
+        internal static int[] CovertTitleStringInArrayNumbers(string title, out string ufNumbers)
+        {
+            int[] numbers = new int[12];
+
+            for (int i = 0; i < title.Length; i++)
+            {
+                numbers[i] = Convert.ToInt32(title[i].ToString());
+            }
+
+            ufNumbers = title.Substring(8, 2);
+
+            return numbers;
+        }
+        internal static string UfOfTitleVote(string ufNumber)
+        {
+            Dictionary<int, string> UFs = new()
+            {
+                {01, "SP"},{02, "MG"},{03, "RJ"},{04, "RS"},{05, "BA"},
+                {06, "PR"},{07, "CE"},{08, "PE"},{09, "SC"},{10, "GO"},
+                {11, "MA"},{12, "PB"},{13, "PA"},{14, "ES"},{15, "PI"},
+                {16, "RN"},{17, "AL"},{18, "MT"},{19, "MS"},{20, "DF"},
+                {21, "SE"},{22, "AM"},{23, "RO"},{24, "AC"},{25, "AP"},
+                {26, "RR"},{27, "TO"},{28, "EXTERIOR"},
+
+            };
+
+            foreach (var uf in UFs)
+            {
+                if (uf.Key == Convert.ToInt32(ufNumber.ToString()))
+                {
+                    ufNumber = uf.Value;
+                    break;
+                }
+            }
+
+            return ufNumber;
+        }
+        internal static int CalculateSumsOfPowers(int[] numbers, int power, int breaker)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (power > breaker) break;
+
+                sum += CalculatePowers(numbers[i], power);
+                power++;
+            }
+            return sum;
+        }
+        internal static int CalculatePowers(int value, int power)
+        {
+            return value * power;
+        }
+        internal static int[] ConvertUfAndFirstDigitVerificationInArrayNumbers(int remainder, string uf)
+        {
+            int[] array = new int[3];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i == 2)
+                {
+                    array[i] = remainder;
+                    break;
+                }
+
+                array[i] = Convert.ToInt32(uf[i].ToString());
+            }
+            return array;
+        }
+
+        #endregion
 
     }
 }

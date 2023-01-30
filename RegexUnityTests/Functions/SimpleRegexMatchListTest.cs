@@ -184,5 +184,38 @@ namespace RegexUnityTests.Functions
             Assert.Equal (expected, result);
         }
 
+        [Fact(DisplayName = "Capturar IP's validos em uma string")]
+        public void GetIpValidFromStringInput()
+        {
+            string input = @"invalidos:
+
+                    192.268.0.1
+                    1.333.1.1
+                    192.168.0.256
+                    256.256.256.256
+
+                    validos:
+                    192.168.0.1
+                    127.0.0.1
+                    10.0.0.255
+                    10.11.12.0
+                    255.255.255.255
+                    0.0.0.0
+                    ";
+
+            string[] expected =
+            {
+                "192.168.0.1",
+                "127.0.0.1",
+                "10.0.0.255",
+                "10.11.12.0",
+                "255.255.255.255",
+                "0.0.0.0"
+            };
+
+            string[] result = SimpleRegexMatchList.GetIpValidFromStringInput(input);
+            Assert.Equal (expected, result);
+        }
+
     }
 }

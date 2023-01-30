@@ -61,5 +61,26 @@ namespace RegexUnityTests.Functions
 
             Assert.True(result);
         }
+
+        [Fact(DisplayName = "Teste de ip valido")]
+        public void IpV4Valid()
+        {
+            string ipValid = "10.0.0.255";
+            string ipInvalid = "192.268.0.1";
+
+            bool result = SimpleRegexValidations.IpV4Valid(ipInvalid);
+            Assert.False(result);
+        }
+
+        [Fact(DisplayName = "Validador de Titulo de Eleitor")]
+        public void VoteTitleValid()
+        {
+            string title = "102385010671";
+            string expectedUf = string.Empty;
+            string expected = "PR";
+
+            bool result = SimpleRegexValidations.VoteTitleValid(title, out expectedUf);
+            Assert.Equal(expected, expectedUf); Assert.True(result);
+        }
     }
 }

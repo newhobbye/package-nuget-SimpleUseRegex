@@ -93,27 +93,19 @@ namespace TestRegex.Functions
 
         }
 
-        //tags html
-        //vai dar pau por causa do conceito de caixas. EX:
+        public static string[] GetIpValidFromStringInput(string input)
+        {
+            string pattern = @"\b(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\b";
+            string completeExpression = @$"{pattern}\.{pattern}\.{pattern}\.{pattern}";
 
-        //<div id = "snbc" >
-        //    < div jsname="sM5MNb" aria-live="polite" class="SaJ9Qe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="assertive" class="tYAdEe"></div>
-        //    <div jsname = "sM5MNb" aria-live="polite" class="tYAdEe" style="z-index:2000"></div>
-        //    <div jsname = "sM5MNb" aria-live="polite" class="tYAdEe" style="z-index:2000"></div>
-        //</div>
+            string[] result = SimpleUseMatchesListRegex(completeExpression, input, RegexOptions.Multiline);
+
+            if (result == null) return Array.Empty<string>();
+
+            return result;
+        }
+
+        //titulo de eleitor
         
     }
 }

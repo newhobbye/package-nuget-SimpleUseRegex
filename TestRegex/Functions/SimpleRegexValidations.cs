@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TestRegex.Functions
 {
@@ -154,6 +155,55 @@ namespace TestRegex.Functions
             }
             
         }
+
+        public static bool IpV4Valid(string ip)
+        {
+            string pattern = @"\b(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\b";
+            string completeExpression = @$"{pattern}\.{pattern}\.{pattern}\.{pattern}";
+
+            return SimpleUseMatchRegex(completeExpression, ip);
+        }
+
+        public static bool VoteTitleValid(string title, out string uf)
+        {
+            uf = string.Empty;
+
+            int[] numbers = SubFunctions.CovertTitleStringInArrayNumbers(title, out uf);
+            int sumOfPrimaryValues = SubFunctions.CalculateSumsOfPowers(numbers, 2, 9);
+            int primaryRemainder = sumOfPrimaryValues % 11;
+
+            if (primaryRemainder == 10)
+            {
+                primaryRemainder = 0;
+            }
+
+            int[] ufAndDVNumbers =
+                SubFunctions.ConvertUfAndFirstDigitVerificationInArrayNumbers(primaryRemainder, uf);
+            int sumOfSecondaryValues = SubFunctions.CalculateSumsOfPowers(ufAndDVNumbers, 7, 9);
+            int secondaryRemainder = sumOfSecondaryValues % 11;
+
+            if (secondaryRemainder == 10)
+            {
+                secondaryRemainder = 0;
+            }
+
+            uf = SubFunctions.UfOfTitleVote(uf);
+
+            string VerificationDigits = string.Concat(primaryRemainder.ToString(), secondaryRemainder.ToString());
+
+            if(VerificationDigits == title.Substring(10, 2))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        
+
 
     }
 }
