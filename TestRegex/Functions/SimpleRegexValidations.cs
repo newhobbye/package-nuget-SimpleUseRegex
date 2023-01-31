@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using TestRegex.Expressions;
 
 namespace TestRegex.Functions
 {
@@ -206,14 +206,13 @@ namespace TestRegex.Functions
         {
             if (string.IsNullOrEmpty(password)) return false;
 
-            string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%!^&*]).{6,20}$";
-            bool result = SimpleUseMatchRegex(pattern, password);
+            bool result = SimpleUseMatchRegex(ExpressionLibrary.PASSWORDVALID, password);
 
             if (result == true) return true;
             else return false;  
         }
 
-        
+        //verificar se as validações aceitam que o documento venha sem formatação
 
 
     }

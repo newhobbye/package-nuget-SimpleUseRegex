@@ -2,7 +2,7 @@
 
 namespace TestRegex.Functions
 {
-    public static class SubFunctions
+    internal static class SubFunctions
     {
 
         internal static bool RemoveWritespaceOnBrazilianPhones(string[] input, out string[] result)

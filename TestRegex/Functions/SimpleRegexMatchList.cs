@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using TestRegex.Expressions;
 
 namespace TestRegex.Functions
 {
@@ -22,10 +23,9 @@ namespace TestRegex.Functions
 
         public static string[] PickUpBrazilianPhonesOnAStringInput(string input)
         {
-            if (input == null) return new string[input.Length];
+            if (input == null) return new string[input!.Length];
 
-            string pattern = @"((\(?\d{2}\)?)\s?)?(9{1})?\s?((\d{4,5})-?\d{4})";
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETBRAZILIANPHONES, input, RegexOptions.Multiline);
 
             if (SubFunctions.RemoveWritespaceOnBrazilianPhones(result, out result))
             {
@@ -41,8 +41,7 @@ namespace TestRegex.Functions
 
         public static string[] GetEmailsInStringInput(string input)
         {
-            string pattern = @"((\w+@)(\w+)\.(\w{3})?(\.\w{2})?)";
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.IgnoreCase);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETEMAILS, input, RegexOptions.IgnoreCase);
 
             if(result == null) return Array.Empty<string>();
 
@@ -51,8 +50,7 @@ namespace TestRegex.Functions
 
         public static string[] GetCPFBrazilianIdentificationOnStringInput(string input)
         {
-            string pattern = @"(\d{3}\.\d{3}.\d{3}-\d{2})";
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCPF, input, RegexOptions.Multiline);
             
             if (result == null) return Array.Empty<string>();
 
@@ -61,10 +59,9 @@ namespace TestRegex.Functions
 
         public static string[] GetRGBrazilianIdentificationOnStringInput(string input)
         {
-            string pattern = @"(\d{2})\.(\d{3})\.(\d{3})(\s?-?\d{1})?";
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETRG, input, RegexOptions.Multiline);
 
-            if (result == null) return new string[0];
+            if (result == null) return Array.Empty<string>();
 
             return result;
 
@@ -72,33 +69,25 @@ namespace TestRegex.Functions
 
         public static string[] GetBrazilianCEPOnStringInput(string input)
         {
-            string pattern = @"\b(\d{5}-\d{3})\b"; //pattern que só pega se for separado
-            //(\d{5}-\d{3}) = Pattern que pega até em meio a outros numeros e textos
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCEP, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
             return result;
-
         }
 
         public static string[] GetBrazilianCNPJIdentificationOnStringInput(string input)
         {
-            string pattern = @"(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})";
-            string[] result = SimpleUseMatchesListRegex(pattern, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCNPJ, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
             return result;
-
         }
 
         public static string[] GetIpValidFromStringInput(string input)
         {
-            string pattern = @"\b(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\b";
-            string completeExpression = @$"{pattern}\.{pattern}\.{pattern}\.{pattern}";
-
-            string[] result = SimpleUseMatchesListRegex(completeExpression, input, RegexOptions.Multiline);
+            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETIPV4, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
