@@ -202,6 +202,17 @@ namespace TestRegex.Functions
 
         }
 
+        public static bool PasswordValid(string password)
+        {
+            if (string.IsNullOrEmpty(password)) return false;
+
+            string pattern = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%!^&*]).{6,20}$";
+            bool result = SimpleUseMatchRegex(pattern, password);
+
+            if (result == true) return true;
+            else return false;  
+        }
+
         
 
 

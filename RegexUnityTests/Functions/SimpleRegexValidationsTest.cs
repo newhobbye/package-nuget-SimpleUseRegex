@@ -63,7 +63,7 @@ namespace RegexUnityTests.Functions
         }
 
         [Fact(DisplayName = "Teste de ip valido")]
-        public void IpV4Valid()
+        public void IpV4ValidTest()
         {
             string ipValid = "10.0.0.255";
             string ipInvalid = "192.268.0.1";
@@ -73,7 +73,7 @@ namespace RegexUnityTests.Functions
         }
 
         [Fact(DisplayName = "Validador de Titulo de Eleitor")]
-        public void VoteTitleValid()
+        public void VoteTitleValidTest()
         {
             string title = "102385010671";
             string expectedUf = string.Empty;
@@ -81,6 +81,15 @@ namespace RegexUnityTests.Functions
 
             bool result = SimpleRegexValidations.VoteTitleValid(title, out expectedUf);
             Assert.Equal(expected, expectedUf); Assert.True(result);
+        }
+
+        [Fact(DisplayName = "Validador de senha com letra maiuscula, minuscula, numeros e caracteres especiais")]
+        public void PasswordValidTest()
+        {
+            string password = "VaT@2023";
+
+            bool result = SimpleRegexValidations.PasswordValid(password);
+            Assert.True(result);
         }
     }
 }
