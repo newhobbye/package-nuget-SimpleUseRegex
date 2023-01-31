@@ -26,5 +26,12 @@
         public static readonly string FORMATCEP = @"(\d{5})[-. ]?(\d{3})";
         public static readonly string FORMATCNPJ = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})";
         #endregion
+
+        #region[SubFunctions]
+        public static readonly string RMWRITESPACESTRING = @"([\s ]{10,})";
+        public static readonly string REMOVEMASKCPF = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
+        public static readonly string RGWITHOUTFINALDIGIT = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])";
+        public static readonly string CNPJWITHOUTFINALDIGITS = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})?";
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using TestRegex.Expressions;
 
 namespace TestRegex.Functions
 {
@@ -9,18 +10,14 @@ namespace TestRegex.Functions
         {
             if (input == null)
             {
-                result = null;
+                result = Array.Empty<string>();
                 return false;
             }
-            string pattern = @" ";
             result = new string[input.Length];
-
-            var options = RegexOptions.Multiline;
-            var rx = new Regex(pattern, options);
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = rx.Replace(input[i], string.Empty);
+                result[i] = SimpleRegexFormat.SimpleUseReplaceRegex(@" ", input[i], string.Empty);
             }
 
             return true;
@@ -28,24 +25,14 @@ namespace TestRegex.Functions
 
         internal static string RemoveWritespacesOnStringResult(string input)
         {
-            string pattern = @"([\s ]{10,})";
-            var regex = new Regex(pattern, RegexOptions.Multiline);
-
-            return regex.Replace(input, @"\n");
+            return SimpleRegexFormat.SimpleUseReplaceRegex(ExpressionLibrary.RMWRITESPACESTRING, input, @"\n", RegexOptions.Multiline);
         }
-
-
 
         #region[Auxiliary CPF Functions]
 
         internal static bool RemoveMaskCPF(string cpf, out string output)
         {
-            string pattern = @"(\d{3})\.?(\d{3})\.?(\d{3})[ -]?(\d{2})";
-            string subistituition = @"$1$2$3$4";
-
-            var regex = new Regex(pattern);
-
-            output = regex.Replace(cpf, subistituition);
+            output = SimpleRegexFormat.SimpleUseReplaceRegex(ExpressionLibrary.REMOVEMASKCPF, cpf, "$1$2$3$4");
 
             if (output.Length != 11)
             {
@@ -136,14 +123,11 @@ namespace TestRegex.Functions
 
         internal static string TransformRGSPInNumberWithoutFinalDigit(string rgSP, out string finalDigit)
         {
-            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})[ -]?([\dxX])";
-            string subistituition = @"$1$2$3";
-
-            var regex = new Regex(pattern);
+            var regex = new Regex(ExpressionLibrary.RGWITHOUTFINALDIGIT);
 
             finalDigit = regex.Replace(rgSP, @"$4".ToLower());
 
-            return regex.Replace(rgSP, subistituition);
+            return regex.Replace(rgSP, "$1$2$3");
         }
         #endregion
 
@@ -151,14 +135,11 @@ namespace TestRegex.Functions
 
         internal static string GetCNPJNumbersWithoutFinalDigits(string cpnj, out string finalDigits)
         {
-            string pattern = @"(\d{2})\.?(\d{3})\.?(\d{3})\/?(\d{4})[-. ]?(\d{2})?";
-            string subistitution = @"$1$2$3$4";
-
-            var regex = new Regex(pattern);
+            var regex = new Regex(ExpressionLibrary.CNPJWITHOUTFINALDIGITS);
 
             finalDigits = regex.Replace(cpnj, "$5");
 
-            return regex.Replace(cpnj, subistitution);
+            return regex.Replace(cpnj, "$1$2$3$4");
         }
         internal static List<int> ConvertStringCNPJInArrayNumbers(string cnpj)
         {
@@ -206,6 +187,10 @@ namespace TestRegex.Functions
 
         #region[Auxiliary TitleVote Functions]
 
+        internal static string RemoveWriteSpacesOrDot(string input)
+        {
+            return SimpleRegexFormat.SimpleUseReplaceRegex(@"[ \s.]", input, string.Empty);
+        }
         internal static int[] CovertTitleStringInArrayNumbers(string title, out string ufNumbers)
         {
             int[] numbers = new int[12];

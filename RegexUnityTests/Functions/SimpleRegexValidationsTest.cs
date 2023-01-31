@@ -75,7 +75,7 @@ namespace RegexUnityTests.Functions
         [Fact(DisplayName = "Validador de Titulo de Eleitor")]
         public void VoteTitleValidTest()
         {
-            string title = "102385010671";
+            string title = "1023.8501 0671";
             string expectedUf = string.Empty;
             string expected = "PR";
 

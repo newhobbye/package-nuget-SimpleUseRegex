@@ -168,6 +168,10 @@ namespace TestRegex.Functions
         {
             uf = string.Empty;
 
+            if (string.IsNullOrEmpty(title)) return false;
+
+            title = SubFunctions.RemoveWriteSpacesOrDot(title);
+
             int[] numbers = SubFunctions.CovertTitleStringInArrayNumbers(title, out uf);
             int sumOfPrimaryValues = SubFunctions.CalculateSumsOfPowers(numbers, 2, 9);
             int primaryRemainder = sumOfPrimaryValues % 11;
@@ -211,9 +215,6 @@ namespace TestRegex.Functions
             if (result == true) return true;
             else return false;  
         }
-
-        //verificar se as validações aceitam que o documento venha sem formatação
-
 
     }
 }
