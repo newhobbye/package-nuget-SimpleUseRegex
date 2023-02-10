@@ -15,7 +15,7 @@ namespace RegexUnityTests.Functions
 
             string expected = "Testando formatação e codigo do regex";
 
-            string result = SimpleRegexFormat.RemoveTagsInAnHTMLBody(tags);
+            string result = RegexSimplifierFormat.RemoveTagsInAnHTMLBody(tags);
 
             Assert.Equal(expected, result);
 
@@ -29,7 +29,7 @@ namespace RegexUnityTests.Functions
             string replace = "$2 $1";
 
             string expected = "44 555";
-            string result = SimpleRegexFormat.SimpleUseReplaceRegex(expression, input, replace);
+            string result = RegexSimplifierFormat.ReplaceRegex(expression, input, replace);
             Assert.Equal(expected, result);
         }
 
@@ -41,7 +41,7 @@ namespace RegexUnityTests.Functions
             string replace = "$2 $1";
 
             string expected = "44 555";
-            string result = SimpleRegexFormat.SimpleUseReplaceRegex(expression, input, replace, RegexOptions.Multiline);
+            string result = RegexSimplifierFormat.ReplaceRegex(expression, input, replace, RegexOptions.Multiline);
             Assert.Equal(expected, result);
         }
 
@@ -58,7 +58,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n(11) 2534-4552\n(11) 98324-2011\n(11) 93655-4141\n(11) 92255-4433";
 
-            string result = SimpleRegexFormat.FormatBrazilianPhonesWithDDD(formatBrazilianPhones);
+            string result = RegexSimplifierFormat.FormatBrazilianPhonesWithDDD(formatBrazilianPhones);
 
             Assert.Equal(expected, result);
 
@@ -81,7 +81,7 @@ namespace RegexUnityTests.Functions
                     "(11) 92255-4433"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDDReturnArray(formatBrazilianPhones);
+            string[] result = RegexSimplifierFormat.FormatBrazilianPhonesWithDDDReturnArray(formatBrazilianPhones);
             Assert.Equal(expected, result);
 
         }
@@ -105,7 +105,7 @@ namespace RegexUnityTests.Functions
                     "(11) 92255-4433"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithDDD(formatBrazilianPhonesList);
+            string[] result = RegexSimplifierFormat.FormatBrazilianPhonesWithDDD(formatBrazilianPhonesList);
 
             Assert.Equal(expected, result);
 
@@ -129,7 +129,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n98727-8321\n99342-6623\n92244-3322\n92244-3322\n5510-8105\n5510-8105";
 
-            string result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDD(formatBrazilianPhonesWithoutDDD);
+            string result = RegexSimplifierFormat.FormatBrazilianPhonesWithoutDDD(formatBrazilianPhonesWithoutDDD);
 
             Assert.Equal(expected, result);
 
@@ -157,7 +157,7 @@ namespace RegexUnityTests.Functions
                 "5510-8105"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDDReturnArray(formatBrazilianPhonesWithoutDDD);
+            string[] result = RegexSimplifierFormat.FormatBrazilianPhonesWithoutDDDReturnArray(formatBrazilianPhonesWithoutDDD);
             Assert.Equal(expected, result);
 
         }
@@ -185,7 +185,7 @@ namespace RegexUnityTests.Functions
                 "5510-8105"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianPhonesWithoutDDD(formatBrazilianPhonesListWithoutDDD);
+            string[] result = RegexSimplifierFormat.FormatBrazilianPhonesWithoutDDD(formatBrazilianPhonesListWithoutDDD);
 
             Assert.Equal(expected, result);
 
@@ -207,7 +207,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n444.697.018-66\n111.222.333-66\n111.222.333-66\n466.555.222-44\n111.222.333-00";
 
-            string result = SimpleRegexFormat.FormatBrazilianIdentityCPF(cpfsFormat);
+            string result = RegexSimplifierFormat.FormatBrazilianIdentityCPF(cpfsFormat);
 
             Assert.Equal(expected, result);
         }
@@ -231,7 +231,7 @@ namespace RegexUnityTests.Functions
                 "111.222.333-00"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianIdentityCPFReturnArray(cpfsFormat);
+            string[] result = RegexSimplifierFormat.FormatBrazilianIdentityCPFReturnArray(cpfsFormat);
 
             Assert.Equal(expected, result);
         }
@@ -257,7 +257,7 @@ namespace RegexUnityTests.Functions
                 "111.222.333-00"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianIdentityCPF(cpfsFormatList);
+            string[] result = RegexSimplifierFormat.FormatBrazilianIdentityCPF(cpfsFormatList);
 
             Assert.Equal(expected, result);
         }
@@ -281,7 +281,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n44.697.018 6\n11.222.333 6\n11.222.333 6\n46.555.222 4\n11.222.333 0\n11.222.333\n11.222.333 ";
 
-            string result = SimpleRegexFormat.FormatBrazilianIdentityRG(rgsFormat);
+            string result = RegexSimplifierFormat.FormatBrazilianIdentityRG(rgsFormat);
             Assert.Equal(expected, result); 
         }
 
@@ -309,7 +309,7 @@ namespace RegexUnityTests.Functions
 
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianIdentityRGReturnArray(rgsFormat);
+            string[] result = RegexSimplifierFormat.FormatBrazilianIdentityRGReturnArray(rgsFormat);
             Assert.Equal(expected, result);
         }
 
@@ -338,7 +338,7 @@ namespace RegexUnityTests.Functions
 
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianIdentityRG(rgssFormatList);
+            string[] result = RegexSimplifierFormat.FormatBrazilianIdentityRG(rgssFormatList);
             Assert.Equal(expected, result);
         }
 
@@ -357,7 +357,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n00111-150\n06317-050\n06317-050\n06317-050";
 
-            string result = SimpleRegexFormat.FormatBrazilianCEP(cepFormat);
+            string result = RegexSimplifierFormat.FormatBrazilianCEP(cepFormat);
 
             Assert.Equal(expected, result);
         }
@@ -379,7 +379,7 @@ namespace RegexUnityTests.Functions
                 "06317-050"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianCEPReturnArray(cepFormat);
+            string[] result = RegexSimplifierFormat.FormatBrazilianCEPReturnArray(cepFormat);
 
             Assert.Equal(expected, result);
         }
@@ -403,7 +403,7 @@ namespace RegexUnityTests.Functions
                 "06317-050"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianCEP(cepFormatList);
+            string[] result = RegexSimplifierFormat.FormatBrazilianCEP(cepFormatList);
 
             Assert.Equal(expected, result);
         }
@@ -426,7 +426,7 @@ namespace RegexUnityTests.Functions
 
             string expected = @"\n82.931.873/0001-82\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90\n62.447.057/0001-90";
 
-            string result = SimpleRegexFormat.FormatBrazilianCPNJ(cnpjFormat);
+            string result = RegexSimplifierFormat.FormatBrazilianCPNJ(cnpjFormat);
             Assert.Equal(expected, result);
         }
 
@@ -453,7 +453,7 @@ namespace RegexUnityTests.Functions
                 "62.447.057/0001-90"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianCPNJReturnArray(cnpjFormat);
+            string[] result = RegexSimplifierFormat.FormatBrazilianCPNJReturnArray(cnpjFormat);
             Assert.Equal(expected, result);
         }
 
@@ -482,7 +482,7 @@ namespace RegexUnityTests.Functions
                 "62.447.057/0001-90"
             };
 
-            string[] result = SimpleRegexFormat.FormatBrazilianCPNJ(cnpjFormatList);
+            string[] result = RegexSimplifierFormat.FormatBrazilianCPNJ(cnpjFormatList);
             Assert.Equal(expected, result);
         }
 

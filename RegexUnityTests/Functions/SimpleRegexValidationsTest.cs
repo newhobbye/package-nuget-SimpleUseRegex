@@ -12,7 +12,7 @@ namespace RegexUnityTests.Functions
             string cpf = "52998224725";
             string cpfFormat = "529.982.247-25";
             
-            bool result = SimpleRegexValidations.BrazilianCPFValid(cpf);
+            bool result = RegexSimplifierValidations.BrazilianCPFValid(cpf);
 
             Assert.True(result);
         }
@@ -23,7 +23,7 @@ namespace RegexUnityTests.Functions
             string rg = "394067149";
             string rgFormat = "39.406.714-9";
 
-            bool result = SimpleRegexValidations.BrazilianRGValidSP(rg);
+            bool result = RegexSimplifierValidations.BrazilianRGValidSP(rg);
 
             Assert.True(result);
         }
@@ -34,7 +34,7 @@ namespace RegexUnityTests.Functions
             string cnpj = "11222333000181";
             string cnpjFormat = "11.222.333/0001-81";
 
-            bool result = SimpleRegexValidations.BrazilianCNPJValid(cnpj);
+            bool result = RegexSimplifierValidations.BrazilianCNPJValid(cnpj);
 
             Assert.True(result);
         }
@@ -45,7 +45,7 @@ namespace RegexUnityTests.Functions
             string expression = @"(\d{3})";
             string input = "123";
 
-            bool result = SimpleRegexValidations.SimpleUseMatchRegex(expression, input);
+            bool result = RegexSimplifierValidations.MatchRegex(expression, input);
 
             Assert.True(result);
         }
@@ -57,7 +57,7 @@ namespace RegexUnityTests.Functions
             string input = "123";
             var flag = RegexOptions.Multiline;
 
-            bool result = SimpleRegexValidations.SimpleUseMatchRegex(expression, input, flag);
+            bool result = RegexSimplifierValidations.MatchRegex(expression, input, flag);
 
             Assert.True(result);
         }
@@ -68,7 +68,7 @@ namespace RegexUnityTests.Functions
             string ipValid = "10.0.0.255";
             string ipInvalid = "192.268.0.1";
 
-            bool result = SimpleRegexValidations.IpV4Valid(ipInvalid);
+            bool result = RegexSimplifierValidations.IpV4Valid(ipInvalid);
             Assert.False(result);
         }
 
@@ -79,7 +79,7 @@ namespace RegexUnityTests.Functions
             string expectedUf = string.Empty;
             string expected = "PR";
 
-            bool result = SimpleRegexValidations.VoteTitleValid(title, out expectedUf);
+            bool result = RegexSimplifierValidations.VoteTitleValid(title, out expectedUf);
             Assert.Equal(expected, expectedUf); Assert.True(result);
         }
 
@@ -88,7 +88,7 @@ namespace RegexUnityTests.Functions
         {
             string password = "VaT@2023";
 
-            bool result = SimpleRegexValidations.PasswordValid(password);
+            bool result = RegexSimplifierValidations.PasswordValid(password);
             Assert.True(result);
         }
     }

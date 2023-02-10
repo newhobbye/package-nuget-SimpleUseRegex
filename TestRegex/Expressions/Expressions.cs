@@ -1,6 +1,6 @@
 ﻿namespace TestRegex.Expressions
 {
-    internal static class ExpressionLibrary
+    internal static class Expressions
     {
         #region[Validations]
         public readonly static string PASSWORDVALID = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%!^&*]).{6,20}$";

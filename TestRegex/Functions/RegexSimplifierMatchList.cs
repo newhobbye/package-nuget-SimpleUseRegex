@@ -3,10 +3,10 @@ using TestRegex.Expressions;
 
 namespace TestRegex.Functions
 {
-    public static class SimpleRegexMatchList
+    public static class RegexSimplifierMatchList
     {
 
-        public static string[] SimpleUseMatchesListRegex(string expression, string input, RegexOptions flag)
+        public static string[] MatchesListRegex(string expression, string input, RegexOptions flag)
         {
             var regex = new Regex(expression, flag);
             var matches = regex.Matches(input);
@@ -25,7 +25,7 @@ namespace TestRegex.Functions
         {
             if (input == null) return new string[input!.Length];
 
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETBRAZILIANPHONES, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETBRAZILIANPHONES, input, RegexOptions.Multiline);
 
             if (SubFunctions.RemoveWritespaceOnBrazilianPhones(result, out result))
             {
@@ -41,7 +41,7 @@ namespace TestRegex.Functions
 
         public static string[] GetEmailsInStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETEMAILS, input, RegexOptions.IgnoreCase);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETEMAILS, input, RegexOptions.IgnoreCase);
 
             if(result == null) return Array.Empty<string>();
 
@@ -50,7 +50,7 @@ namespace TestRegex.Functions
 
         public static string[] GetCPFBrazilianIdentificationOnStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCPF, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETCPF, input, RegexOptions.Multiline);
             
             if (result == null) return Array.Empty<string>();
 
@@ -59,7 +59,7 @@ namespace TestRegex.Functions
 
         public static string[] GetRGBrazilianIdentificationOnStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETRG, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETRG, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
@@ -69,7 +69,7 @@ namespace TestRegex.Functions
 
         public static string[] GetBrazilianCEPOnStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCEP, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETCEP, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
@@ -78,7 +78,7 @@ namespace TestRegex.Functions
 
         public static string[] GetBrazilianCNPJIdentificationOnStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETCNPJ, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETCNPJ, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 
@@ -87,7 +87,7 @@ namespace TestRegex.Functions
 
         public static string[] GetIpValidFromStringInput(string input)
         {
-            string[] result = SimpleUseMatchesListRegex(ExpressionLibrary.GETIPV4, input, RegexOptions.Multiline);
+            string[] result = MatchesListRegex(Expressions.Expressions.GETIPV4, input, RegexOptions.Multiline);
 
             if (result == null) return Array.Empty<string>();
 

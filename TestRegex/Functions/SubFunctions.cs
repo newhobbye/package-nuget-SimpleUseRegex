@@ -17,7 +17,7 @@ namespace TestRegex.Functions
 
             for (int i = 0; i < input.Length; i++)
             {
-                result[i] = SimpleRegexFormat.SimpleUseReplaceRegex(@" ", input[i], string.Empty);
+                result[i] = RegexSimplifierFormat.ReplaceRegex(@" ", input[i], string.Empty);
             }
 
             return true;
@@ -25,14 +25,14 @@ namespace TestRegex.Functions
 
         internal static string RemoveWritespacesOnStringResult(string input)
         {
-            return SimpleRegexFormat.SimpleUseReplaceRegex(ExpressionLibrary.RMWRITESPACESTRING, input, @"\n", RegexOptions.Multiline);
+            return RegexSimplifierFormat.ReplaceRegex(Expressions.Expressions.RMWRITESPACESTRING, input, @"\n", RegexOptions.Multiline);
         }
 
         #region[Auxiliary CPF Functions]
 
         internal static bool RemoveMaskCPF(string cpf, out string output)
         {
-            output = SimpleRegexFormat.SimpleUseReplaceRegex(ExpressionLibrary.REMOVEMASKCPF, cpf, "$1$2$3$4");
+            output = RegexSimplifierFormat.ReplaceRegex(Expressions.Expressions.REMOVEMASKCPF, cpf, "$1$2$3$4");
 
             if (output.Length != 11)
             {
@@ -123,7 +123,7 @@ namespace TestRegex.Functions
 
         internal static string TransformRGSPInNumberWithoutFinalDigit(string rgSP, out string finalDigit)
         {
-            var regex = new Regex(ExpressionLibrary.RGWITHOUTFINALDIGIT);
+            var regex = new Regex(Expressions.Expressions.RGWITHOUTFINALDIGIT);
 
             finalDigit = regex.Replace(rgSP, @"$4".ToLower());
 
@@ -135,7 +135,7 @@ namespace TestRegex.Functions
 
         internal static string GetCNPJNumbersWithoutFinalDigits(string cpnj, out string finalDigits)
         {
-            var regex = new Regex(ExpressionLibrary.CNPJWITHOUTFINALDIGITS);
+            var regex = new Regex(Expressions.Expressions.CNPJWITHOUTFINALDIGITS);
 
             finalDigits = regex.Replace(cpnj, "$5");
 
@@ -189,7 +189,7 @@ namespace TestRegex.Functions
 
         internal static string RemoveWriteSpacesOrDot(string input)
         {
-            return SimpleRegexFormat.SimpleUseReplaceRegex(@"[ \s.]", input, string.Empty);
+            return RegexSimplifierFormat.ReplaceRegex(@"[ \s.]", input, string.Empty);
         }
         internal static int[] CovertTitleStringInArrayNumbers(string title, out string ufNumbers)
         {

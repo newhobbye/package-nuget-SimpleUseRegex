@@ -30,7 +30,7 @@ namespace RegexUnityTests.Functions
                 "mart4463@outlook.com"
             };
 
-            string[] result = SimpleRegexMatchList.SimpleUseMatchesListRegex(expression, emails, flag);
+            string[] result = RegexSimplifierMatchList.MatchesListRegex(expression, emails, flag);
             Assert.Equal(expected, result);
 
         }
@@ -62,7 +62,7 @@ namespace RegexUnityTests.Functions
                 "(25)452566744"
             };
 
-            string[] result = SimpleRegexMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
+            string[] result = RegexSimplifierMatchList.PickUpBrazilianPhonesOnAStringInput(phonesBr);
             Assert.Equal(expected, result);
         }
 
@@ -88,7 +88,7 @@ namespace RegexUnityTests.Functions
                 "mart4463@outlook.com"
             };
 
-            string[] result = SimpleRegexMatchList.GetEmailsInStringInput(emails);
+            string[] result = RegexSimplifierMatchList.GetEmailsInStringInput(emails);
             Assert.Equal(expected, result);
 
         }
@@ -110,7 +110,7 @@ namespace RegexUnityTests.Functions
                 "466.697.090-65"
             };
 
-            string[] result = SimpleRegexMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
+            string[] result = RegexSimplifierMatchList.GetCPFBrazilianIdentificationOnStringInput(CPFs);
             Assert.Equal(expected, result);
         }
 
@@ -135,7 +135,7 @@ namespace RegexUnityTests.Functions
                 "33.333.3334"
             };
 
-            string[] result = SimpleRegexMatchList.GetRGBrazilianIdentificationOnStringInput(RGs);
+            string[] result = RegexSimplifierMatchList.GetRGBrazilianIdentificationOnStringInput(RGs);
             Assert.Equal(expected, result);
         }
 
@@ -157,7 +157,7 @@ namespace RegexUnityTests.Functions
                 
             };
 
-            string[] result = SimpleRegexMatchList.GetBrazilianCEPOnStringInput(CEPs);
+            string[] result = RegexSimplifierMatchList.GetBrazilianCEPOnStringInput(CEPs);
             Assert.Equal (expected, result);
         }
 
@@ -180,7 +180,7 @@ namespace RegexUnityTests.Functions
                 "30.507.541/0001-71"
             };
 
-            string[] result = SimpleRegexMatchList.GetBrazilianCNPJIdentificationOnStringInput(CNPJs);
+            string[] result = RegexSimplifierMatchList.GetBrazilianCNPJIdentificationOnStringInput(CNPJs);
             Assert.Equal (expected, result);
         }
 
@@ -213,7 +213,7 @@ namespace RegexUnityTests.Functions
                 "0.0.0.0"
             };
 
-            string[] result = SimpleRegexMatchList.GetIpValidFromStringInput(input);
+            string[] result = RegexSimplifierMatchList.GetIpValidFromStringInput(input);
             Assert.Equal (expected, result);
         }
 

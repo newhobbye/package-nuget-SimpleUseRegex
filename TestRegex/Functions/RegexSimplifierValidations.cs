@@ -3,17 +3,17 @@ using TestRegex.Expressions;
 
 namespace TestRegex.Functions
 {
-    public static class SimpleRegexValidations
+    public static class RegexSimplifierValidations
     {
 
-        public static bool SimpleUseMatchRegex(string expression, string input) 
+        public static bool MatchRegex(string expression, string input) 
         {
             var regex = new Regex(expression);
 
             return regex.IsMatch(input);
         }
 
-        public static bool SimpleUseMatchRegex(string expression, string input, RegexOptions flag) 
+        public static bool MatchRegex(string expression, string input, RegexOptions flag) 
         {
             var regex = new Regex(expression, flag);
 
@@ -161,7 +161,7 @@ namespace TestRegex.Functions
             string pattern = @"\b(\d{1,2}|1\d{2}|2[0-4]\d|25[0-5])\b";
             string completeExpression = @$"{pattern}\.{pattern}\.{pattern}\.{pattern}";
 
-            return SimpleUseMatchRegex(completeExpression, ip);
+            return MatchRegex(completeExpression, ip);
         }
 
         public static bool VoteTitleValid(string title, out string uf)
@@ -210,7 +210,7 @@ namespace TestRegex.Functions
         {
             if (string.IsNullOrEmpty(password)) return false;
 
-            bool result = SimpleUseMatchRegex(ExpressionLibrary.PASSWORDVALID, password);
+            bool result = MatchRegex(Expressions.Expressions.PASSWORDVALID, password);
 
             if (result == true) return true;
             else return false;  
